@@ -1,0 +1,140 @@
+
+/* clear */
+
+* {
+
+	margin: auto;
+	padding: auto;
+	border: none;
+
+}
+
+/* fonts */
+
+h1, h2, h3 {
+
+	font-family: "Andale", monospace;
+	font-weight: bold;
+	color: #dddddd;
+
+}
+
+h1 {
+
+	font-size: 4em;
+
+}
+
+h2 {
+
+	font-family: "Noto Sans", sans-serif;
+
+}
+
+/* base */
+
+body {
+
+	background-color: #141a24;
+	width: 100vw;
+	height: 100vh;
+
+}
+
+/* header */
+
+#header {
+
+	background-color: #2b374a;
+	width: 70%;
+	height: 10%;
+	display: flex;
+}
+
+#title {
+
+	width: 25%; 
+	height: 100%;
+	display: flex;
+	margin-left: 0;
+
+}
+
+#buttons {
+
+	width: 65%;
+	height: 100%;
+	display: flex;
+	margin-right: 0;
+
+}
+
+button {
+
+	background-color: transparent;
+	width: calc( 100% / 3 );
+	height: 100%;
+
+	transition: color 0.5s, background-color 0.5s;
+
+}
+
+button:focus {
+
+	outline: none;
+
+}
+
+button:hover {
+
+	background-color: #3f4657;
+
+}
+
+#sign {
+
+	background-color: #999ba3;
+	position: relative;
+	height: 5%;
+	top: 95%;
+	transition: left 0.5s, background-color 0.5s;
+
+}
+
+/* content section */
+
+#content {
+
+	background-color: #2b374a;
+	width: 70%;
+	height: 90%;
+	overflow: auto;
+	scroll-behavior: smooth;
+
+}
+
+.page {
+
+	background-color: transparent;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-wrap: wrap;
+
+}
+
+/* footer */
+
+footer {
+
+	width: 100%;
+	height: 10%;
+	display: flex;
+
+}
+
+/* scroll */
+
+::-webkit-scrollbar {
+	display: none;
+}
