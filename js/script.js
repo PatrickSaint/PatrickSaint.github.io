@@ -5,7 +5,6 @@ var button_case;	 // header button case
 var buttons; // header buttons
 var sign;	 // activated button sign
 
-//var color = ["#ef476f", "#ffd166", "#06d6a0", "#2CA6CE", "#654aeb"];
 var button_color = [ "#999ba3", "#f29e50", "#f55353" ];
 
 var button_text_off = [ "<h2> Começo </h2>", 
@@ -65,12 +64,6 @@ function goto(destination) {
 
 }
 
-/*function fullscreen() {
-
-	document.body.requestFullscreen();
-
-}*/
-
 function slide( event ) {
 
 	event.preventDefault();
@@ -86,28 +79,5 @@ function slide( event ) {
    	goto(page + delta);
 
 }
-
-/*function send_email() {
-	
-	Email.send( {
-		
-		Host: "smtp.gmail.com",
-		Username : "patricksantanadeveloper@gmail.com",
-		Password : "familia02",
-		To : 'antoniopatricksantana@gmail.com',
-		From : document.getElementById("input_email").value,
-		Subject : document.getElementById("input_subject").value,
-		Body : document.getElementById("input_name").value + ": " + document.getElementById("input_message").value,
-		
-	} ).then( message => alert( "mail sent successfully" ) );
-
-}*/
-
-/*function loop() {
-
-	alert("loop");
-	window.requestAnimationFrame(this);
-
-}*/
 
 window.onload = run;
