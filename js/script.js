@@ -39,7 +39,7 @@ function toogle_warning() {
 
 function animate(array) {
 	for (var i = 0; i < array.length; i++) {
-		if (array[i].offsetTop >= -150){
+		if (array[i].offsetTop >= (-150)){
 			if (!array[i].dragging) {
 				array[i].style["transition"] = "top 20s linear";
 				array[i].style["top"] = array[i].offsetTop - document.body.clientHeight + "px";
