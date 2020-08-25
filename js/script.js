@@ -1,5 +1,5 @@
 
-var geometrics = []; 					// circle, triangle and cube
+var geometrics = []; 					// circles, triangles and cubes
 var warning = null;
 var rotation = [
 	"rotate_left 30s linear infinite",
