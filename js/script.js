@@ -1,83 +1,129 @@
 
-var content; // main div
-var section; // content section
-var button_case;	 // header button case
-var buttons; // header buttons
-var sign;	 // activated button sign
+var geometrics = []; 					// circle, triangle and cube
+var warning = null;
+var rotation = [
+	"rotate_left 30s linear infinite",
+	"rotate_right 30s linear infinite"
+]
 
-var button_color = [ "#999ba3", "#f29e50", "#f55353" ];
+window.onload = function () {
+	warning = document.getElementById('warning-message');
+	warning.visibility = true;
 
-var button_text_off = [ "<h2> Começo </h2>", 
-						"<h2>Sobre Mim</h2>", 
-						"<h2>Site</h2>" ];
+	geometrics = document.getElementsByClassName('geometric');
 
-var button_text_on = [ 	"<h2 style='color: #999ba3;'>/* Começo */</h2>", 
-						"<h2 style='color: #f29e50;'>[ Sobre Mim ]</h2>", 
-						"<h2 style='color: #f55353;'>// Site = 0.1</h2>" ];
-
-var position = 0;
-var delta = 0;
-var delay = false;
-var page = 0;
-
-function run() {
-	get_elements();
-	get_events();
-	set_sign();
-}
-
-function get_elements() {
-	content = document.getElementById("content");
-	section = document.getElementsByClassName("page");
-	button_case = document.getElementById("buttons");
-	buttons = document.getElementsByTagName("button");
-	sign = document.getElementById("sign");
-}
-
-function get_events() {
-	content.addEventListener( "wheel", event => { slide(event); });
-}
-
-function set_sign() {
-	sign.style["width"] = ( button_case.clientWidth / buttons.length ) + "px";
-	sign.style["left"] = ( - 3 * sign.clientWidth ) + "px";
-}
-
-function goto(destination) {
-	if( destination >= 0 && destination < section.length ){
-		position = destination * content.clientHeight;
-		content.scrollTo(0, position);
-
-		//sign.style["background-color"] = color[destination];
-		sign.style["left"] = (destination * sign.clientWidth - 3 * sign.clientWidth) + "px";
-		sign.style["background-color"] = button_color[destination];
-
-		buttons[page].innerHTML = button_text_off[page];
-		buttons[destination].innerHTML = button_text_on[destination];
-
-		//buttons[page].style["color"] = "#cccccc";
-		//buttons[destination].style["color"] = "#ffffff";
-
-		page = destination;
-
+	for (var i = 0; i < geometrics.length; i++) {
+		// Make the DIV element draggable:
+		drag(geometrics[i]);
 	}
 
+	loop();
 }
 
-function slide( event ) {
+function loop() {
+	animate(geometrics);
 
-	event.preventDefault();
-
-	delta = Math.sign(event.deltaY);
-	
-	if( delay )
-		return;
-		
-	delay = true;
-    setTimeout( function(){ delay = false }, 500 );
-
-   	goto(page + delta);
-
+	window.requestAnimationFrame(loop);
 }
 
-window.onload = run;
+function toogle_warning() {
+	if(warning.visibility){
+		warning.style.opacity = "0%";
+		warning.visibility = false;
+	}
+	else {
+		warning.style.opacity = "100%";
+		warning.visibility = true;
+	}
+}
+
+function animate(array) {
+	for (var i = 0; i < array.length; i++) {
+		if (array[i].offsetTop >= -150){
+			if (!array[i].dragging) {
+				array[i].style["transition"] = "top 20s linear";
+				array[i].style["top"] = array[i].offsetTop - document.body.clientHeight + "px";
+			}
+
+			else {
+				array[i].style["transition"] = "top 0s linear";
+			}
+		}
+
+		else {
+			var direction = Math.round(Math.random() * 1);
+
+			array[i].style["transition"] = "top 0s linear";
+			array[i].style["top"] = document.body.clientHeight + 100 + "px";
+			array[i].style["left"] = Math.random() * (document.body.clientWidth - 100) + "px";
+			array[i].style["animation"] = rotation[direction];
+		}
+	}
+}
+
+function drag(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "header")) {
+    // if present, the header is where you move the DIV from:
+    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+  } else {
+    // otherwise, move the DIV from anywhere inside the DIV:
+    elmnt.onmousedown = dragMouseDown;
+    elmnt.onmousemove = mouseOverDrag;
+  }
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+  }
+
+  function mouseOverDrag(e) {
+  		elmnt.style["cursor"] = "pointer";
+  }
+
+  function elementDrag(e) {
+  	elmnt.dragging = true;
+  	elmnt.style["cursor"] = "move";
+
+    e = e || window.event;
+    e.preventDefault();
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+
+    var x = elmnt.offsetLeft - pos1;
+    var y = elmnt.offsetTop - pos2;
+    var r = 100;
+    // set the element's new position:
+    elmnt.style.top = numberUnder(20, y, document.body.clientHeight - r + 20) + "px";
+    elmnt.style.left = numberUnder(0, x, document.body.clientWidth - r) + "px";
+  }
+
+  function closeDragElement() {
+  	elmnt.dragging = false;
+  	elmnt.style["cursor"] = "default";
+    // stop moving when mouse button is released:
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+
+  function numberUnder(min, number, max) {
+  	if (number < min) {
+  		return min;
+  	}
+
+  	if (number > max) {
+  		return max;
+  	}
+
+  	return number;
+  }
+}
