@@ -2,45 +2,65 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Patrick Sant</title>
-	<link rel="icon" href="icon.png">
+	<title>Patrick Sant'ana</title>
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" >
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script type="text/javascript" src="js/script.js"></script>
 </head>
 <body>
-	<header id="header">
-		<div id="title">
-			<h2 style="color: #e8d256;">"Patrick Santana"</h2>
+	<div id="page">
+		<header>
+			<div name="title">
+				<h2>Patrick Sant'ana</h2>
+			</div>
+
+			<div name="navigation">
+				<h3 style="color: #ffffff; text-decoration: none;">Resumo</h3>
+				<h3>Projetos</h3>
+				<h3>Contato</h3>
+			</div>
+		</header>
+		<div id="content">
+			<div id="background">
+				<div class="geometric" id="circle"></div>
+				<div class="geometric" id="triangle"></div>
+				<div class="geometric" id="cube"></div>
+			</div>
+
+			<div name="message">
+				<h1>Hello World!</h1>
+				<h2>Oi, Sou Patrick Sant’ana. <span style="color: #9861E7; font-weight: bold;">#Programador</span>;</h2>
+			</div>
 		</div>
-		<nav id="buttons">
-			<button onclick="goto(0)"><h2 style="color: #999ba3;">/* Começo */</h2></button>
-			<button onclick="goto(1)"><h2>Sobre Mim</h2></button>
-			<button onclick="goto(2)"><h2>Site</h2></button>
-			<div style="width: 0; height: 100%;">
-				<div id="sign"></div>
+		<footer>
+			<div id="warning-box">
+				<div class="icon-color" id="warning" onclick="toogle_warning();"></div>
+				<div id="warning-message"><h4>Site em Construção</h4></div>
 			</div>
-		</nav>
-	</header>
-	<div id="content">
-		<section class="page">
-			<div style="margin: auto;">
-				<h1><span style="color: #59d950">Hello World!</span></h1>
-				<h2>Oi sou Patrick Santana. <span style="color: #59d950">#Coder</span>;</h2>
+			<div style="display: flex; width: 100%; height: 100%;">
+				<div id="social_medias">
+					<a href="https://github.com/PatrickSaint" target="_blank">
+						<div class="icon-color" id="github_color"></div>
+						<div class="icon-gray" id="github_gray"></div>
+					</a>
+
+					<a href="https://www.facebook.com/patricksantanadeveloper" target="_blank">
+						<div class="icon-color" id="facebook_color"></div>
+						<div class="icon-gray" id="facebook_gray"></div>
+					</a>
+
+					<a href="https://www.instagram.com/patricksantanadeveloper/" target="_blank">
+						<div class="icon-color" id="instagram_color"></div>
+						<div class="icon-gray" id="instagram_gray"></div>
+					</a>
+
+					<a href="https://twitter.com/PatrickSantDev" target="_blank">
+						<div class="icon-color" id="twitter_color"></div>
+						<div class="icon-gray" id="twitter_gray"></div>
+					</a>
+				</div>
 			</div>
-		</section>
-		<section class="page">
-			<div style="margin: auto;">
-				<h2>Estou estudando programação tanto na área de back-end quanto de front-end.</h2>
-			</div>
-		</section>
-		<section class="page">
-			<div style="display: flex; width: 100%; height: 90%;">
-				<h2>Pretendo postar meus testes/resultados nesse site.</h2>
-			</div>
-			<footer>
-				<h3>&copy; 2020 PatrickSaint.io</h3>
-			</footer>
-		</section>
+		</footer>
 	</div>
 </body>
 </html>
